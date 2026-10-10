@@ -9,24 +9,22 @@ import java.sql.Driver;
 
 public class BaseTest {
 
-protected WebDriver driver;
-protected final String BASE_URL="https://www.saucedemo.com";
-protected final String WEB_TITLE="Swag Labs";
-protected final int PRODUCTS_COUNT=6;
+    protected WebDriver driver;
+    protected final String BASE_URL = "https://www.saucedemo.com";
+    protected final String WEB_TITLE = "Swag Labs";
+    protected final int PRODUCTS_COUNT = 6;
 
     @BeforeMethod
-    public void startBrowser(){
-        driver=new ChromeDriver();
+    public void startBrowser() {
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(BASE_URL);
-}
-
-    @AfterMethod (alwaysRun = true)
-    public void quitBrowser(){
-        if(driver!=null)
-        driver.quit();
     }
 
-
+    @AfterMethod(alwaysRun = true)
+    public void quitBrowser() {
+        if (driver != null)
+            driver.quit();
+    }
 
 }
