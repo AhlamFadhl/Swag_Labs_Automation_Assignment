@@ -13,13 +13,14 @@ import java.util.Iterator;
 import java.util.List;
 
 public class DataDriven {
+    static String  PATH="testData/testData.json";
    static ObjectMapper mapper = new ObjectMapper();
     //read json file
     static JsonNode rootNode ;
     @DataProvider(name = "getValidJsonData")
     public static Iterator<Object[]> getValidData() throws IOException {
         rootNode = mapper.readTree(
-                new File("testData/testData.json"));
+                new File(PATH));
         //conver json to list of UserData
         List<UserData> dataList = mapper.convertValue(
                 rootNode.get("validusers"),
@@ -36,9 +37,10 @@ public class DataDriven {
     }
 
     @DataProvider(name = "getInValidJsonData")
-    public static Iterator<Object[]> getInvalidData() throws IOException {
+    public static Iterator<Object[]> getInvalidData()  {
+        try{
         rootNode = mapper.readTree(
-                new File("testData/testData.json"));
+                new File(PATH));
         //conver json to list of UserData
         List<UserData> dataList = mapper.convertValue(
                 rootNode.get("invalidusers"),
@@ -52,5 +54,35 @@ public class DataDriven {
         }
 
         return dataToReturn.iterator();
+        } catch (IOException e) {
+            throw new RuntimeException("Cannot read testData.json", e);
+        }
+    }
+
+    @DataProvider(name = "getCartItems")
+    public static Object[][] getCartItems() {
+        try {
+            JsonNode rootNode = mapper.readTree(new File(PATH));
+            List<String> items = mapper.convertValue(
+                    rootNode.get("cart_items"),
+                    new TypeReference<List<String>>() {
+                    });
+            return new Object[][]{{items}};
+        } catch (IOException e) {
+            throw new RuntimeException("Cannot read testData.json", e);
+        }
+    }
+
+    public static String getString(String key) {
+        try {
+            JsonNode rootNode = mapper.readTree(new File(PATH));
+            JsonNode value = rootNode.get(key);
+            if (value == null) {
+                throw new RuntimeException("Key not found in testData.json: " + key);
+            }
+            return value.asText();
+        } catch (IOException e) {
+            throw new RuntimeException("Cannot read testData.json", e);
+        }
     }
 }

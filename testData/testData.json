@@ -24,7 +24,13 @@
     },
     {
       "username": "error_user",
-      "password": "secret_sauce"
+      "password": "123"
     }
-  ]
+  ],
+  "cart_items": [
+    "Sauce Labs Backpack",
+    "Sauce Labs Bolt T-Shirt",
+    "Sauce Labs Onesie"
+  ],
+  "itemToRemove": "Sauce Labs Bolt T-Shirt"
 }

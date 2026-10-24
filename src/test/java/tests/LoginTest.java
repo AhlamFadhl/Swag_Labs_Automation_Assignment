@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import model.UserData;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;

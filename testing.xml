@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Saucedemo">
+    <test name="Login" enabled="true">
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test>
+    <test name="Inventory" enabled="true">
+        <classes>
+            <class name="tests.InventoryTest"/>
+        </classes>
+    </test>
+
+    <test name="Cart" enabled="true">
+        <classes>
+            <class name="tests.CartTest"/>
+        </classes>
+    </test>
+</suite>
